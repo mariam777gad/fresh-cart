@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Eye, Facebook, Lock, Mail } from "lucide-react";
+import { LoginDataType } from "./login.interface";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -24,10 +25,10 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  async function hamadaLogin(data) {
+  async function hamadaLogin(data: LoginDataType) {
     const res = await signIn("credentials", { redirect: false, ...data });
 
-    if (res.ok) {
+    if (res?.ok) {
       toast.promise(handelUserLogin(data), {
         loading: "Loading....",
         position: "top-center",
