@@ -61,7 +61,7 @@ export async function getAllProductsOnCategory(id: string) {
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/products?category=${id}`,
   );
   const data:ApiResponse= await response.json();
-  //console.log(data);
+ // console.log(data);
 
   return data.data;
 }

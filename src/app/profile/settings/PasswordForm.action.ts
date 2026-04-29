@@ -19,7 +19,7 @@ export async function UpdateLoggedUserPassword(data: ChangePassword) {
   );
 
   const res: AuthResponse = await response.json();
-  console.log(res);
+  //console.log(res);
   if (res.message === "success") {
     const cookieStore = await cookies();
     cookieStore.set("userToken", res.token, {

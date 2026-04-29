@@ -1,3 +1,4 @@
+import { Product } from "@/app/specificCat/[id]/spacificCat.interface";
 import {
   getAllProductsOnCategory,
   getSpecificCategory,
@@ -17,7 +18,7 @@ export default async function Page({
 
   const products = (await getAllProductsOnCategory(id)) || [];
 
-  //console.log(products);
+  // console.log(products);
 
   const categoryData = await getSpecificCategory(id);
   //console.log(categoryData);
@@ -86,8 +87,8 @@ export default async function Page({
 
       {products.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 mb-8 gap-5 mt-5.5 container mx-auto">
-          {products.map((e) => {
-            return <ProductCard key={e.id} prod={e} />;
+          {products.map((e: Product) => {
+            return <ProductCard key={e._id} prod={e} />;
           })}
         </div>
       ) : (

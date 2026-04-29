@@ -84,7 +84,7 @@ export interface Product {
   title: string;
   slug: string;
   description: string;
-  quantity: number;
+  quantity?: number;
   price: number;
   priceAfterDiscount?: number;
   imageCover: string;
@@ -94,7 +94,7 @@ export interface Product {
   subcategory: { _id: string; name: string; slug: string; category: string }[];
   ratingsAverage: number;
   ratingsQuantity: number;
-  sold: number;
+  sold?: number;
   createdAt: string;
   updatedAt: string;
 }

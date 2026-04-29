@@ -21,11 +21,6 @@ type UserDataReturned = {
   tokencredentials: string;
   id: string;
 };
-declare module "next-auth" {
-  interface User {
-    tokencredentials: string;
-  }
-}
 
 export const nextAuthConfig: NextAuthOptions = {
   providers: [
@@ -81,8 +76,9 @@ export const nextAuthConfig: NextAuthOptions = {
       return params.token;
     },
     session(param) {
-      param.session.user.id = param.token.id;
-
+      if (param.session.user) {
+        param.session.user.id = param.token.id as string;
+      }
       // console.log("session", param);
       return param.session;
     },
@@ -90,4 +86,3 @@ export const nextAuthConfig: NextAuthOptions = {
   pages: { signIn: "/login" },
   jwt: { maxAge: 60 * 60 * 24 * 3 },
 };
-//fypoqeby@mailinator.com

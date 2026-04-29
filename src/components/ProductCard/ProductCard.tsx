@@ -5,14 +5,14 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 // import { Badge } from "@/components/ui/badge";
-import { AllProductsData } from "@/app/home.interface";
 import { Eye, Heart, RefreshCw, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import AddProductToCart from "../AddProductToCart/AddProductToCart";
 import AddProductToWishlist from "../AddProductToWishlist/AddProductToWishlist";
+import { Product } from "@/app/specificCat/[id]/spacificCat.interface";
 
-export default function ProductCard({ prod }: { prod: AllProductsData }) {
+export default function ProductCard({ prod }: { prod: Product }) {
   const {
     _id,
     brand,
@@ -35,7 +35,6 @@ export default function ProductCard({ prod }: { prod: AllProductsData }) {
     title,
     subcategory,
     updatedAt,
-    availableColors,
     priceAfterDiscount,
     sold,
   } = prod;
