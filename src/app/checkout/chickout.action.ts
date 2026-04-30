@@ -33,7 +33,7 @@ export async function handelOnlineOrder(
 ) {
   const { token, userId } = await getUserToken();
   const domain = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-  const successPath = `${domain}/allorders`;
+  const successPath = `${domain}`;
 
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/orders/checkout-session/${cartId}?url=${successPath}`,
