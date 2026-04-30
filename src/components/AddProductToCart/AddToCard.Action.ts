@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 export async function handleAddProductToCart(data: productCartId) {
   const { token, userId } = await getUserToken();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v2/cart`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/cart`,
     {
       method: "POST",
       headers: {
@@ -38,7 +38,7 @@ export async function handleAddProductToCart(data: productCartId) {
 export async function getUserCart() {
   const { token, userId } = await getUserToken();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v2/cart`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/cart`,
     {
       method: "GET",
       headers: {
@@ -75,7 +75,7 @@ export async function handleProductQuantity(
 ) {
   const { token, userId } = await getUserToken();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v2/cart/${productId}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/cart/${productId}`,
     {
       method: "PUT",
       headers: {
@@ -89,13 +89,13 @@ export async function handleProductQuantity(
   console.log(responseDAta);
 
   revalidatePath("/cart");
-  return responseDAta
+  return responseDAta;
 }
 
 export async function handleProductDelete(productId: string) {
   const { token, userId } = await getUserToken();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v2/cart/${productId}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/cart/${productId}`,
     {
       method: "DELETE",
       headers: {
@@ -111,7 +111,7 @@ export async function handleProductDelete(productId: string) {
 export async function handleCartDelete() {
   const { token, userId } = await getUserToken();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v2/cart`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/cart`,
     {
       method: "DELETE",
       headers: {
