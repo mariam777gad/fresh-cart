@@ -66,21 +66,45 @@ export const nextAuthConfig: NextAuthOptions = {
       clientSecret: process.env.AUTH_FACEBOOK_SECRET!,
     }),
   ],
+  // callbacks: {
+  //   jwt(params) {
+  //     if (params.user) {
+  //       params.token.mytkn = params.user.tokencredentials;
+  //       // params.token.id = params.user.id;
+
+  //       params.token.id = params.user.id || params.user._id;
+  //     }
+  //     // console.log("jwt", params);
+  //     return params.token;
+  //   },
+  //   session(param) {
+  //     if (param.session.user) {
+  //       param.session.user.id = param.token.id as string;
+  //     }
+  //     // console.log("session", param);
+  //     return param.session;
+  //   },
+  // },
   callbacks: {
-    jwt(params) {
-      if (params.user) {
-        params.token.mytkn = params.user.tokencredentials;
-        params.token.id = params.user.id;
+    async jwt({ token, user, account }) {
+      if (user) {
+        if (user.tokencredentials) {
+          token.mytkn = user.tokencredentials;
+          token.id = user.id;
+        } 
+        else {
+          token.id = user.id || token.sub;
+        }
       }
-      // console.log("jwt", params);
-      return params.token;
+      return token;
     },
-    session(param) {
-      if (param.session.user) {
-        param.session.user.id = param.token.id as string;
+    
+    async session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id as string;
+        session.token = token.mytkn as string; 
       }
-      // console.log("session", param);
-      return param.session;
+      return session;
     },
   },
   pages: { signIn: "/login" },

@@ -22,7 +22,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
 import {
   CircleUser,
   Headset,
@@ -100,17 +99,14 @@ export default function NavBar() {
     router.push("/login");
   }
   React.useEffect(() => {
+    getUserCart().then(({ numOfCartItems }) => {
+      setCartCount(numOfCartItems);
+    });
 
-getUserCart().then(({ numOfCartItems }) => {
-  setCartCount(numOfCartItems)
-})
+    getUserWishlist().then(({ count }) => {
+      setWishlistCount(count);
+    });
 
-
-getUserWishlist().then(({count})=>{
-  setWishlistCount(count)
-})
-
-    
     // setCartCount(
     //   getUserCart().then(({ numOfCartItems }) => {
     //     return numOfCartItems;
@@ -119,7 +115,7 @@ getUserWishlist().then(({count})=>{
 
     // setWishlistCount(
     //   getUserWishlist().then((count)=>{
-    //     return count 
+    //     return count
     //   })
     // )
   }, []);
@@ -129,7 +125,6 @@ getUserWishlist().then(({count})=>{
         viewport={false}
         className=" max-w-none justify-between py-2 px-40 "
       >
-        {/* logo */}
         <div>
           <Image src={logo} alt="logo" />
         </div>
