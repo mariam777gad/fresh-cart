@@ -1,4 +1,4 @@
-'use server'
+"use server";
 import { getUserToken } from "../utils";
 import { AllOrdersType, Orders } from "./allorders.interface";
 
@@ -12,6 +12,7 @@ export async function getUserOrders() {
       headers: {
         token: token as string,
       },
+      cache: "no-store",
     },
   );
 

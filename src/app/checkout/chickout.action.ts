@@ -13,7 +13,7 @@ export async function handelCashOrder(
 ) {
   const { token, userId } = await getUserToken();
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v2/orders/${cartId}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/orders/${cartId}`,
     {
       method: "POST",
       headers: {
@@ -32,8 +32,9 @@ export async function handelOnlineOrder(
   cartId: string,
 ) {
   const { token, userId } = await getUserToken();
+    const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/orders/checkout-session/${cartId}?url=http://localhost:3000`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/orders/checkout-session/${cartId}?url=${baseUrl}`,
     {
       method: "POST",
       headers: {

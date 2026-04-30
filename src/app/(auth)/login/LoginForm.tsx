@@ -7,7 +7,7 @@ import Link from "next/link";
 import { Controller, useForm } from "react-hook-form";
 import { loginSchema } from "./login.schema";
 import handelUserLogin from "./login.services";
-import { toast } from "sonner";
+import { toast } from "sonner"; 
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
@@ -33,8 +33,8 @@ export default function LoginForm() {
         loading: "Loading....",
         position: "top-center",
         success: (x) => {
-          //router.push("/");
-          window.location.href = "/";
+          router.push("/");
+          //window.location.href = "/";
           return x;
         },
       });
