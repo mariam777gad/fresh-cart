@@ -33,8 +33,8 @@ export default function LoginForm() {
         loading: "Loading....",
         position: "top-center",
         success: (x) => {
-          router.push("/");
-          //window.location.href = "/";
+          //router.push("/");
+          window.location.href = "/";
           return x;
         },
       });
