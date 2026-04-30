@@ -32,9 +32,14 @@ export async function handelOnlineOrder(
   cartId: string,
 ) {
   const { token, userId } = await getUserToken();
-    const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+  // const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+  const domain = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL} `
+    : "http://localhost:3000";
+  const successPath = `${domain}/allorders`;
+
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/orders/checkout-session/${cartId}?url=${baseUrl}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/orders/checkout-session/${cartId}?url=${successPath}`,
     {
       method: "POST",
       headers: {

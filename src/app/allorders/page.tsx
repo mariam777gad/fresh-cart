@@ -41,12 +41,14 @@ export default async function page() {
       </nav>
 
       <div className="flex items-center gap-3 mb-10">
-        <div className="flex items-center justify-center">
-          <Handbag className="w-6 h-6 text-red-500 fill-none stroke-[1.5]" />
+        <div className="flex items-center justify-center bg-[#1BB253] p-2">
+          <Handbag className="w-6 h-6 text-white fill-none stroke-[1.5] rounded-2xl" />
         </div>
         <div>
-          <h1 className="text-[22px] font-bold text-[#212529]">My Wishlist</h1>
-          <p className="text-sm text-gray-500 mt-0.5">1 item saved</p>
+          <h1 className="text-[22px] font-bold text-[#212529]">My Orders</h1>
+          <p className="text-sm text-gray-500 mt-0.5">
+            {myOrders.length} item saved
+          </p>
         </div>
       </div>
       <div className="flex justify-between items-center mb-8"></div>
