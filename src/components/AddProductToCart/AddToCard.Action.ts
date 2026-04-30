@@ -1,7 +1,7 @@
 "use server";
 
 import { getUserToken } from "@/app/utils";
-import { productCartId, productQuantity } from "./AddToCard.interface";
+import { CartResponse, productCartId, productQuantity } from "./AddToCard.interface";
 import { revalidatePath } from "next/cache";
 
 export async function handleAddProductToCart(data: productCartId) {
@@ -103,9 +103,12 @@ export async function handleProductDelete(productId: string) {
       },
     },
   );
-  const responseDAta = await response.json();
+  const responseDAta :CartResponse = await response.json();
 
+  //console.log(responseDAta);
+  
   revalidatePath("/cart");
+  return responseDAta.data
 }
 
 export async function handleCartDelete() {
