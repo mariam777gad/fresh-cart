@@ -18,7 +18,7 @@ export default async function page() {
             <span className="text-[10px]">/</span>
             <span className="font-medium">Brands</span>
           </nav>
-
+<div></div>
           <div className="flex items-center gap-5">
             <div className="bg-white/15 p-4 rounded-[1.2rem] backdrop-blur-md border border-white/10 shadow-xl">
               <Tag className="w-9 h-9 text-white rotate-90" strokeWidth={2} />
