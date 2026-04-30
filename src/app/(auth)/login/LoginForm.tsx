@@ -27,7 +27,8 @@ export default function LoginForm() {
 
   async function hamadaLogin(data: LoginDataType) {
     const res = await signIn("credentials", { redirect: false, ...data });
-
+console.log(data);
+//Pa$$w0rd!
     if (res?.ok) {
       toast.promise(handelUserLogin(data), {
         loading: "Loading....",

@@ -32,10 +32,7 @@ export async function handelOnlineOrder(
   cartId: string,
 ) {
   const { token, userId } = await getUserToken();
-  // const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
-  const domain = process.env.NEXT_PUBLIC_VERCEL_URL
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL} `
-    : "http://localhost:3000";
+  const domain = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
   const successPath = `${domain}/allorders`;
 
   const response = await fetch(
@@ -52,5 +49,9 @@ export async function handelOnlineOrder(
   const data: OnlinePaymentResponse = await response.json();
   //console.log(data);
 
+  // return data.session.url;
+  if (!data?.session?.url) {
+    throw new Error("No payment session URL returned");
+  }
   return data.session.url;
 }
